@@ -1,0 +1,20 @@
+def main : env {
+  prepend_pid | uppercase | prepend_pid | prepend_werd | prepend_pid
+}
+
+def prepend_pid ( (omg|o=i), asdf ) {
+  perl -ne 'print "$$: $_"'
+}
+
+def uppercase {
+  perl -ne 'print uc' |
+  grep_out_blah
+}
+
+def grep_out_blah : perl -ne {
+  print if /rofl/i;
+}
+
+def prepend_werd : perl -ne {
+  print "WERD: $_"
+}

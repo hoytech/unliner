@@ -1,0 +1,22 @@
+def main(pattern|p=s, (lines|n=i), make-uppercase|u, (junk|j=s "junk default")) : template {
+  [% IF junk == "junk default" %]
+    grep -v "^${pattern}$" | my_head -n $lines
+                                     [% IF make_uppercase %] --make-uppercase [% END %]
+  [% ELSE %]
+    echo [% junk %]
+  [% END %]
+}
+
+
+def my_head(n|lines=i, u|make-uppercase) : template {
+  head -n [% n || 5 %]
+
+  [% IF u %]
+    | uppercase-it
+  [% END %]
+}
+
+
+def uppercase-it : perl -ne {
+  print uc
+}

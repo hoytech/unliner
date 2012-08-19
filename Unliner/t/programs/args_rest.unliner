@@ -1,0 +1,23 @@
+def main(split1, split2) : template : pass-through {
+  [% IF split1 %]
+    split1 $@
+  [% ELSIF split2 %]
+    split2 $@
+  [% ELSE %]
+    echo "$@"
+  [% END %]
+}
+
+
+def split1(z=i) : perl :pass_through :template {
+  print join(':', @ARGV);
+  [% IF z %]
+    print "=[% z * 2 %]";
+  [% END %]
+  print "\n";
+}
+
+
+def split2 : perl :pass_through {
+  print join(':', @ARGV). "\n";
+}

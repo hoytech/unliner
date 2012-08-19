@@ -1,0 +1,14 @@
+#!/usr/bin/env perl
+
+use common::sense;
+
+use Unliner::Program;
+
+
+my $filename = shift @ARGV
+  || die "need unliner script filename as first arg";
+
+
+Unliner::Program->new
+                ->compile_file($filename)
+                ->run( def_name => 'main', argv => \@ARGV, );

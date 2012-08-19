@@ -1,0 +1,3 @@
+def main() : exec /bin/sh {
+  echo -n "Hello from $0 $1 $$"
+}

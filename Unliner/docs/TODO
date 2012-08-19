@@ -1,0 +1,40 @@
+args
+  shell_escape TT filter
+
+
+def modifiers
+  : perl
+    -p, -E, -M
+  : python
+    --perl-ne
+  : unpipe
+  : env
+    - Fills environment variables in with arg values
+
+
+
+incompatibilities in :sh
+  BLAH=1 prefix env variables
+  2>&1 redirects
+  $$ and such: http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html
+  "hello"world quoting
+  ?? shell style single quotes (should leave it as is? -- perl style is nicer)
+
+
+
+docs
+  POD
+  website
+  S5 presentation
+
+
+
+design
+  ?? throw error if passed unknown def_modifier
+  ?? globbing in :sh
+
+
+
+bugs
+  printf "aa\nbb\ncc\n" | perl -I lib bin/unliner t/programs/args.unliner -n 2 --junk "what's up"
+    -- parse error embedded '

@@ -1,0 +1,40 @@
+#!/usr/bin/env unliner
+
+#echo "hello world blah zzzz blah" | perl -I lib unliner docs/EXAMPLE_FILE
+
+#include Some::Package;
+
+
+/*
+ * Scratch program to exercise unliner grammar
+ */
+
+
+def
+  /* hi */ main # sup
+  {
+
+grep hello\ world | grep_out_bad_stuff | grep world | perl -ne 's/blah/bluh/g; print'
+# HI!
+ | head -n # ROFL! | coptz
+1     }
+
+
+def grep_out_bad_stuff( o|omg=f,blah!,(foo=i)                                
+                                      ,(bar=s   "hello \"world\""),
+                        (rofl'asdfkd fd "f"dfdfd')) : perl -ne : env {
+
+  print if /blah/ && /world/;
+
+};
+
+
+def tally (l|limit=i) : template {
+
+  sort | uniq -c | sort -rn
+
+  [% IF limit.defined %]
+    | head -n $limit
+  [% END %]
+
+}

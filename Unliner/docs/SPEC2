@@ -1,0 +1,4 @@
+  grep hello\ world | grep " as\\ \n df \" world" | perl -ne 'asdf {}'
+
+ | head -n 
+1

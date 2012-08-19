@@ -1,0 +1,30 @@
+# Little junk testing script used during dev
+# perl -e 'print "rofl\nblah\n" for (1..4)' | perl -I lib unliner docs/INP
+# perl -e 'print "rofl\nblah\n" while 1' | perl -I lib unliner docs/INP |head -n2
+
+
+def main : env {
+  prepend_pid --rofl copter | uppercase | prepend_pid | do_some_python | prepend_pid
+}
+
+def prepend_pid ( (omg|o=i), asdf ) {
+  perl -ne 'print "$$: $_"'
+}
+
+def uppercase {
+  perl -ne 'print uc' |
+  grep_out_blah
+}
+
+def grep_out_blah : perl -ne {
+  print if /rofl/i;
+}
+
+def do_some_python : python {
+
+  import sys
+
+  for line in sys.stdin:
+    print "PYTHON: " + line,
+
+}
