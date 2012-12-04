@@ -1,4 +1,4 @@
-package Unliner::Intro;
+package App::Unliner::Intro;
 
 1;
 

@@ -1,4 +1,4 @@
-package Unliner::Grammar;
+package App::Unliner::Grammar;
 
 use common::sense;
 
@@ -10,7 +10,7 @@ our $parsers = {};
 
 
 qr{
-  <grammar: Unliner::Grammar::ShellArg>
+  <grammar: App::Unliner::Grammar::ShellArg>
 
   <token: shell_arg>
     (?: \\ . | [^'"\s|#] )+ |
@@ -21,9 +21,9 @@ qr{
 
 
 qr{
-  <grammar: Unliner::Grammar::File>
+  <grammar: App::Unliner::Grammar::File>
 
-  <extends: Unliner::Grammar::ShellArg>
+  <extends: App::Unliner::Grammar::ShellArg>
 
   <token: ws>
     (?: \s++ | [#][^\n]*\n | [/][*] .*? [*][/] )*
@@ -92,9 +92,9 @@ qr{
 
 
 qr{
-  <grammar: Unliner::Grammar::Pipeline>
+  <grammar: App::Unliner::Grammar::Pipeline>
 
-  <extends: Unliner::Grammar::ShellArg>
+  <extends: App::Unliner::Grammar::ShellArg>
 
   <token: ws>
     (?: \s++ | [#][^\n]*\n )*
@@ -109,12 +109,12 @@ qr{
 
 
 $parsers->{file_parser} = qr{
-  <extends: Unliner::Grammar::File>
+  <extends: App::Unliner::Grammar::File>
   <file>
 }xs;
 
 $parsers->{pipeline_parser} = qr{
-  <extends: Unliner::Grammar::Pipeline>
+  <extends: App::Unliner::Grammar::Pipeline>
   <pipeline>
 }xs;
 

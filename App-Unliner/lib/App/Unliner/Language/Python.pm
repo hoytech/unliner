@@ -1,8 +1,8 @@
-package Unliner::Language::Python;
+package App::Unliner::Language::Python;
 
 use common::sense;
 
-use base qw(Unliner::Language);
+use base qw(App::Unliner::Language);
 
 
 sub command_to_run { 'python' }

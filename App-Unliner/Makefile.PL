@@ -3,12 +3,12 @@ use strict;
 use ExtUtils::MakeMaker;
 
 my $preop =
-    'perldoc -uT lib/Unliner/Intro.pm | tee $(DISTVNAME)/README.pod > README.pod;' .
+    'perldoc -uT lib/App/Unliner/Intro.pm | tee $(DISTVNAME)/README.pod > README.pod;' .
     'pod2text ../README.pod | tee $(DISTVNAME)/README > README';
 
 WriteMakefile(
-    NAME              => 'Unliner',
-    VERSION_FROM      => 'lib/Unliner.pm',
+    NAME              => 'App::Unliner',
+    VERSION_FROM      => 'lib/App/Unliner.pm',
     EXE_FILES         => [ 'bin/unliner', ],
     PREREQ_PM         => {
                            'common::sense' => 0,

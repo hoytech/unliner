@@ -1,8 +1,8 @@
-package Unliner::Language::Exec;
+package App::Unliner::Language::Exec;
 
 use common::sense;
 
-use base qw(Unliner::Language);
+use base qw(App::Unliner::Language);
 
 
 sub command_to_run {

@@ -1,13 +1,13 @@
-package Unliner::Language::Shell;
+package App::Unliner::Language::Shell;
 
 use common::sense;
 
-use Unliner::Language;
-use base 'Unliner::Language';
+use App::Unliner::Language;
+use base 'App::Unliner::Language';
 
 use Data::Dumper;
 
-use Unliner::Grammar;
+use App::Unliner::Grammar;
 
 
 sub process {
@@ -23,7 +23,7 @@ sub construct_pipeline {
   $def_body =~ s/^\s*[|]//;
   $def_body =~ s/[|]\s*$//;
 
-  if ($def_body =~ $Unliner::Grammar::parsers->{pipeline_parser}) {
+  if ($def_body =~ $App::Unliner::Grammar::parsers->{pipeline_parser}) {
     $def_parsed = \%/;
   } else {
     my $err = Dumper(\@!);
@@ -55,7 +55,7 @@ sub process_arg {
              }egx;
   }
 
-  $arg = Unliner::Grammar::PostProc::arg($arg);
+  $arg = App::Unliner::Grammar::PostProc::arg($arg);
 
   return @{ $self->{argv} } if ($arg eq '$@');
 

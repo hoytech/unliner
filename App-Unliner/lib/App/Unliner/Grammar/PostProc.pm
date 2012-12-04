@@ -1,4 +1,4 @@
-package Unliner::Grammar::PostProc;
+package App::Unliner::Grammar::PostProc;
 
 use common::sense;
 

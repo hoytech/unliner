@@ -1,4 +1,4 @@
-package Unliner::Util;
+package App::Unliner::Util;
 
 use common::sense;
 

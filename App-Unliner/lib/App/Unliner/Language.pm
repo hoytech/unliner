@@ -1,4 +1,4 @@
-package Unliner::Language;
+package App::Unliner::Language;
 
 use common::sense;
 
@@ -6,17 +6,17 @@ use Carp;
 use Digest::SHA1;
 use Getopt::Long;
 
-use Unliner::Util;
-use Unliner::Grammar;
-use Unliner::Grammar::PostProc;
+use App::Unliner::Util;
+use App::Unliner::Grammar;
+use App::Unliner::Grammar::PostProc;
 
 
 
 our $registry = {
-  sh => 'Unliner::Language::Shell',
-  exec => 'Unliner::Language::Exec',
-  perl => 'Unliner::Language::Perl',
-  python => 'Unliner::Language::Python',
+  sh => 'App::Unliner::Language::Shell',
+  exec => 'App::Unliner::Language::Exec',
+  perl => 'App::Unliner::Language::Perl',
+  python => 'App::Unliner::Language::Python',
 };
 
 
@@ -41,7 +41,7 @@ sub construct_pipeline {
 
   my $body_digest = Digest::SHA1::sha1_hex($self->{def_body});
 
-  my $dir = Unliner::Util::get_temp_dir();
+  my $dir = App::Unliner::Util::get_temp_dir();
 
   my $filename = "$dir/$body_digest";
   open(my $fh, '>', $filename) || die "couldn't write temp file: $!";
@@ -70,7 +70,7 @@ sub parse_args {
       my $arg_name = $prototype_elem->{get_opt_arg};
       $arg_name = $1 if $arg_name =~ /^([\w-]+)/;
 
-      my $default_value = Unliner::Grammar::PostProc::arg($prototype_elem->{shell_arg});
+      my $default_value = App::Unliner::Grammar::PostProc::arg($prototype_elem->{shell_arg});
 
       $self->{context}->{$arg_name} = $default_value;
     }

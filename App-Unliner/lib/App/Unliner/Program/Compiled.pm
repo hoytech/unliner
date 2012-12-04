@@ -1,12 +1,12 @@
-package Unliner::Program::Compiled;
+package App::Unliner::Program::Compiled;
 
 use common::sense;
 
 use POSIX;
 
-use Unliner::Util;
-use Unliner::Grammar::PostProc;
-use Unliner::Language;
+use App::Unliner::Util;
+use App::Unliner::Grammar::PostProc;
+use App::Unliner::Language;
 
 
 
@@ -47,13 +47,13 @@ sub _build_pipeline_commands {
 
   my $def = $self->{program}->{defs}->{$def_name};
 
-  my $def_body = Unliner::Grammar::PostProc::brace_block($def->{brace_block}->{''});
+  my $def_body = App::Unliner::Grammar::PostProc::brace_block($def->{brace_block}->{''});
   my $def_modifiers = $self->_parse_def_modifiers($def->{def_modifier});
   my $def_prototype = $def->{prototype};
 
   my $cmd = $def_modifiers->{cmd};
 
-  my $language_package = $Unliner::Language::registry->{$cmd} || die "language not specified";
+  my $language_package = $App::Unliner::Language::registry->{$cmd} || die "language not specified";
 
   ## FIXME: find better way to require
   my $pm_file = $language_package;
@@ -83,7 +83,7 @@ sub _parse_def_modifiers {
 
     $output->{args}->{$cmd} = $args;
 
-    if ($Unliner::Language::registry->{$cmd}) {
+    if ($App::Unliner::Language::registry->{$cmd}) {
       die "$cmd def modifier not compatible with $output->{cmd}" if defined $output->{cmd};
       $output->{cmd} = $cmd;
     }
@@ -106,7 +106,7 @@ sub execute {
 
     foreach my $command (@$commands) {
       my @exec_args = @{$command->{shell_arg}};
-      print STDERR join(' ', map { Unliner::Util::re_shell_quote($_) } @exec_args);
+      print STDERR join(' ', map { App::Unliner::Util::re_shell_quote($_) } @exec_args);
       print STDERR ' | ' unless $command == $commands->[-1];
     }
 

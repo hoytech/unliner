@@ -1,12 +1,12 @@
-package Unliner::Program;
+package App::Unliner::Program;
 
 use common::sense;
 
 use Data::Dumper;
 
-use Unliner::Util;
-use Unliner::Grammar;
-use Unliner::Program::Compiled;
+use App::Unliner::Util;
+use App::Unliner::Grammar;
+use App::Unliner::Program::Compiled;
 
 
 sub new {
@@ -15,7 +15,7 @@ sub new {
   my $self = {};
   bless $self, $class;
 
-  $self->{dir} = Unliner::Util::get_temp_dir();
+  $self->{dir} = App::Unliner::Util::get_temp_dir();
 
   if ($ENV{UNLINER_DEBUG}) {
     print STDERR "TMP: $self->{dir}\n";
@@ -52,7 +52,7 @@ sub compile_file {
 
   my $parsed;
 
-  if ($file_contents =~ $Unliner::Grammar::parsers->{file_parser}) {
+  if ($file_contents =~ $App::Unliner::Grammar::parsers->{file_parser}) {
     $parsed = \%/;
   } else {
     my $err = Dumper(\@!);
@@ -89,11 +89,11 @@ sub run {
   die "no such def '$def_name'"
     unless $self->{defs}->{$def_name};
 
-  Unliner::Program::Compiled->new( program => $self,
-                                   def_name => $args{def_name},
-                                   argv => $args{argv},
-                                 )
-                            ->execute;
+  App::Unliner::Program::Compiled->new( program => $self,
+                                        def_name => $args{def_name},
+                                        argv => $args{argv},
+                                      )
+                                 ->execute;
 
   return $self;
 

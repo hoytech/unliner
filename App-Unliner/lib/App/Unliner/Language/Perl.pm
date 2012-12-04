@@ -1,8 +1,8 @@
-package Unliner::Language::Perl;
+package App::Unliner::Language::Perl;
 
 use common::sense;
 
-use base qw(Unliner::Language);
+use base qw(App::Unliner::Language);
 
 
 sub command_to_run { 'perl' }
