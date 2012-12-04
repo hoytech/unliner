@@ -19,7 +19,11 @@ sub construct_pipeline {
 
   my $def_parsed; 
 
-  if ($self->{def_body} =~ $Unliner::Grammar::parsers->{pipeline_parser}) {
+  my $def_body = $self->{def_body};
+  $def_body =~ s/^\s*[|]//;
+  $def_body =~ s/[|]\s*$//;
+
+  if ($def_body =~ $Unliner::Grammar::parsers->{pipeline_parser}) {
     $def_parsed = \%/;
   } else {
     my $err = Dumper(\@!);

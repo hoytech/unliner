@@ -13,11 +13,11 @@
 def
   /* hi */ main # sup
   {
-
+|
 grep hello\ world | grep_out_bad_stuff | grep world | perl -ne 's/blah/bluh/g; print'
 # HI!
  | head -n # ROFL! | coptz
-1     }
+1  |   }
 
 
 def grep_out_bad_stuff( o|omg=f,blah!,(foo=i)                                
