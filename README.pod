@@ -47,7 +47,7 @@ Usually one-liners entered in your shell are thrown away after they are used bec
 
 Besides, as soon as your pipelines reach a full line or two of text they start to become very hard to work with (though I confess I've gotten a lot of use out of crazy long pipelines before). At this point, usually the one-liner is re-written as a "real" program.
 
-The point of unliner is provide an intermediate stage between a one-liner and a real program. And you might even find that there is no need to make it a real program after all.
+The point of unliner is to provide an intermediate stage between a one-liner and a real program. And you might even find that there is no need to make it a real program after all.
 
 To turn your one-liner into an unliner just wrap a C<def main { }> around it like this:
 
@@ -65,7 +65,7 @@ You could also put a L<shebang line|https://en.wikipedia.org/wiki/Shebang_(Unix)
 
 =head2 Defs
 
-The C<def main { }> isn't a special type of def except that it happens to be what is called when your program is invoked. You can create other defs and they can be invoked by your main def, kind of like subroutines (name analogy: Python).
+The C<def main { }> isn't a special type of def except that it happens to be what is called when your program is invoked. You can create other defs and they can be invoked by your main def and other defs, kind of like subroutines (name precedent for def: CL, Python).
 
 For example, we could move the C<awk> command into a C<ip-extractor> def, and the tallying logic into a C<tally> def:
 
@@ -119,7 +119,7 @@ C<head|h=i> is a L<Getopt::Long> argument definition. It means that the official
 
 However, if you forget to add an h argument, the head process will die with an error like C<head: : invalid number of lines>.
 
-In order to have a default value for a paramater, you put parentheses around the argument definition followed by the default value (analogy: lisp):
+In order to have a default value for a paramater, you put parentheses around the argument definition followed by the default value (precedent: lisp):
 
     def main((head|h=i 5)) {
       grep "GET /report.cgi" $@ | ip-extractor | tally | head -n $head
@@ -229,10 +229,11 @@ Above is OK because C<n> is guaranteed to be an integer, but when using template
 
 =head2 Debugging
 
-In order to see what pipeline is actually being run, you can set the environment variable C<UNLINER_DEBUG> and it will print some information to standard error:
+In order to see the actual pipeline being run, you can set the environment variable C<UNLINER_DEBUG> and it will print some information to standard error:
 
     $ UNLINER_DEBUG=1 unliner log-report access.log --filter-localhost
     TMP: /tmp/GPtXapOfib
     CMD: grep 'GET /report.cgi' access.log | perl /tmp/GPtXapOfib/56ba8ad7a6431cbe6b64835c97e248d27a4234a0 | sort | uniq -c | sort -rn | head -n 5
 
 Note that when you write defs in languages like perl and python, scripts will be created in a temporary directory and executed from there.
+
