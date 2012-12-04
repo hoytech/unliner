@@ -9,6 +9,7 @@ my $preop =
 WriteMakefile(
     NAME              => 'Unliner',
     VERSION_FROM      => 'lib/Unliner.pm',
+    EXE_FILES         => [ 'bin/unliner', ],
     PREREQ_PM         => {
                            'common::sense' => 0,
                            'Regexp::Grammars' => 0,
