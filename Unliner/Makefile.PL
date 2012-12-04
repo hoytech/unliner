@@ -3,7 +3,7 @@ use strict;
 use ExtUtils::MakeMaker;
 
 my $preop =
-    'perldoc -uT lib/Unliner/Intro.pm | tee $(DISTVNAME)/README.pod > ../README.pod;' .
+    'perldoc -uT lib/Unliner/Intro.pm | tee $(DISTVNAME)/README.pod > README.pod;' .
     'pod2text ../README.pod | tee $(DISTVNAME)/README > README';
 
 WriteMakefile(
