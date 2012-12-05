@@ -4,12 +4,12 @@ args
 
 def modifiers
   : perl
-    -p, -E, -M
+    -p, -E (should be the default?), -M
   : python
     --perl-ne
-  : unpipe
   : env
     - Fills environment variables in with arg values
+  : unpipe
 
 
 
@@ -23,7 +23,6 @@ incompatibilities in :sh
 
 
 docs
-  POD
   website
   S5 presentation
 

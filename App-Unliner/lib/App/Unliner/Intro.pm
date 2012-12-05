@@ -75,7 +75,11 @@ If you save this in the file C<log-report> then your unliner program can be invo
 
     $ unliner log-report
 
-You could also put a L<shebang line|https://en.wikipedia.org/wiki/Shebang_(Unix)> at the top of your script, C<chmod +x> it and run it directly.
+You could also put a L<shebang line|https://en.wikipedia.org/wiki/Shebang_(Unix)> at the top of your script:
+
+    #!/usr/bin/env unliner
+
+Now if you C<chmod +x log-report> and run it directly.
 
 
 
@@ -133,7 +137,7 @@ C<head|h=i> is a L<Getopt::Long> argument definition. It means that the official
 
     $ unliner log-report access.log -h 5
 
-However, if you forget to add an h argument, the head process will die with an error like C<head: : invalid number of lines>.
+However, if you forget to add one of these arguments, the head process will die with an error like C<head: : invalid number of lines>.
 
 In order to have a default value for a paramater, you put parentheses around the argument definition followed by the default value (precedent: lisp):
 
@@ -142,6 +146,8 @@ In order to have a default value for a paramater, you put parentheses around the
     }
 
 Environment variables are also available so C<$HOME> and such will work.
+
+None of these variables need to be quoted. They are always passed verbatim to the underlying command.
 
 Defs internal to your program accept arguments in exactly the same way:
 
@@ -160,9 +166,11 @@ Defs internal to your program accept arguments in exactly the same way:
 
 =head2 Def Modifiers
 
-The contents of all the defs we've seen so far are in a custom unliner language called B<sh> which is mostly like bourne shell/bash but a little bit different (differences are explained here FIXME).
+The contents of all the defs we've seen so far are in a custom unliner language called B<Shell>. C<: sh> is redundant because Shell is the default language.
 
-However, def modifiers can be used to change how the def body is interpreted. Modifiers go in between the def name/prototype and the body. One language modifier that can be used is C<perl>. It causes the def body to be interpreted as perl code. For example:
+Shell is mostly like bourne shell/bash but a little bit different. The differences are described in the distribution's TODO file. Some differences are deliberate and some are just features that haven't been implemented yet. One difference is that unliner uses perl-style backslashed single quotes in single quoted string literals, not bourne shell-style (if you don't know what the bourne shell-style is, consider yourself lucky).
+
+Def modifiers can be used to change how the def body is interpreted by changing the language to something other than Shell. Modifiers go in between the def name/prototype and the body. One language modifier that can be used is C<perl>. It causes the def body to be interpreted as perl code. For example:
 
     def body-size-extractor : perl {
       while (<STDIN>) {
@@ -177,7 +185,7 @@ This def could also have been written in sh, but dealing with shell escapes is s
       perl -e 'while(<STDIN>) { ... }'
     }
 
-Def modifiers themselves sometimes take arguments. For example, perl defs can take the C<-n> switch which implicitly adds a while loop (just like the perl binary):
+Def modifiers themselves sometimes take arguments. For example, perl defs can take the C<-n> switch which implicitly adds a loop (just like the perl binary):
 
     def body-size-extractor : perl -n {
       print "$1\n" if /(\d+)$/;
@@ -193,7 +201,7 @@ Another supported language is python:
         print "[" + line + "]"
     }
 
-Note that python is very noisy when it receives a SIGPIPE so polite pipeline components should catch it and then exit.
+Note that python is very noisy when it receives a SIGPIPE so polite pipeline components should manually catch it and then exit silently.
 
 Github pull requests for new languages appreciated.
 
