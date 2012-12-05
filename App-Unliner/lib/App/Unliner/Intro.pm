@@ -49,6 +49,14 @@ Looks like we've found our culprit.
 
 
 
+=head2 Installing unliner
+
+If you want to follow along with this tutorial, or start coding right away, the easiest way to install unliner is with cpanminus:
+
+    curl -sL https://raw.github.com/miyagawa/cpanminus/master/cpanm | sudo perl - App::Unliner
+
+
+
 =head2 You want it to do I<what>?
 
 Usually one-liners entered in your shell are thrown away after they are used because it's so easy to re-create them as necessary. That's one reason why unix pipes are so cool.

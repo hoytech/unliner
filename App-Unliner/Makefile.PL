@@ -2,9 +2,6 @@ use strict;
 
 use ExtUtils::MakeMaker;
 
-my $preop =
-    'perldoc -uT lib/App/Unliner/Intro.pm | tee $(DISTVNAME)/README.pod > README.pod;' .
-    'pod2text ../README.pod | tee $(DISTVNAME)/README > README';
 
 my %args = (
     NAME              => 'App::Unliner',
@@ -18,8 +15,9 @@ my %args = (
                          },
     LIBS              => [],
     DEFINE            => '',
+    LICENSE => 'perl',
     dist => {
-      PREOP => $preop,
+      PREOP => 'perldoc -uT lib/App/Unliner/Intro.pm > README.pod; pod2text README.pod > $(DISTVNAME)/README',
     },
 );
 
