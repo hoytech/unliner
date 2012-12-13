@@ -9,7 +9,7 @@ my $dir;
 sub get_temp_dir {
   return $dir if defined $dir;
 
-  $dir = File::Temp->newdir();
+  $dir = File::Temp->newdir( CLEANUP => !$ENV{UNLINER_DEBUG}, );
 
   my $prev_sigint = $SIG{INT};
 

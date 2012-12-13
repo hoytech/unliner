@@ -102,7 +102,7 @@ sub execute {
   my $commands = $self->{compiled_commands};
 
   if ($ENV{UNLINER_DEBUG}) {
-    print STDERR "CMD: ";
+    print STDERR "unliner: CMD: ";
 
     foreach my $command (@$commands) {
       my @exec_args = @{$command->{shell_arg}};
