@@ -1,0 +1,11 @@
+def main : env {
+  print_numbers_from_1_to_100 | divisible_by_five | wc -l
+}
+
+def print_numbers_from_1_to_100(n) {
+  perl -e 'print "$_\n" for (1..100)'
+}
+
+def divisible_by_five {
+  grep '[05]$'
+}

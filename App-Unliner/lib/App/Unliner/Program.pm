@@ -41,8 +41,14 @@ sub compile_file {
 
   # Load file
 
-  open(my $fh, '<', $filename)
-    || die "couldn't read unliner script '$filename': $!";
+  my $fh;
+
+  if (ref $filename eq 'GLOB') {
+    $fh = $filename;
+  } else {
+    open($fh, '<', $filename)
+      || die "couldn't read unliner script '$filename': $!";
+  }
 
   my $file_contents = do { local $/; <$fh> };
 

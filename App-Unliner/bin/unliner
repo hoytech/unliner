@@ -5,10 +5,13 @@ use common::sense;
 use App::Unliner::Program;
 
 
-my $filename = shift @ARGV
-  || die "need unliner script filename as first arg";
+my $filename = shift @ARGV;
+
+if (!defined $filename || $filename eq '-') {
+  $filename = \*STDIN;
+}
 
 
 App::Unliner::Program->new
-                      ->compile_file($filename)
-                      ->run( def_name => 'main', argv => \@ARGV, );
+                     ->compile_file($filename)
+                     ->run( def_name => 'main', argv => \@ARGV, );

@@ -4,6 +4,8 @@
   * The tests incorrectly hard-coded the name of the perl binary
     which was caused tests to fail on some systems (thanks CPAN
     testers). $^X fix suggested by Andreas J. König.
+  * Allow unliner programs to be read from standard input if the
+    unliner script name is omitted or is "-".
 
 0.006   2012-12-04
   * Documentation updates
