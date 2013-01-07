@@ -1,4 +1,4 @@
-0.007   2013-01-06
+0.008   2013-01-06
   * Don't clean-up temp directory when UNLINER_DEBUG is specified.
     This is so you can go inspect any generated scripts after.
   * The tests incorrectly hard-coded the name of the perl binary
