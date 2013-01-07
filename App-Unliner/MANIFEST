@@ -24,9 +24,11 @@ t/basic.t
 t/env.t
 t/exec.t
 t/grammar.t
+t/prog_on_stdin.t
 t/programs/args.unliner
 t/programs/args_rest.unliner
 t/programs/basic.unliner
 t/programs/env.unliner
 t/programs/exec.unliner
 t/programs/grammar.unliner
+t/programs/prog_on_stdin.unliner
