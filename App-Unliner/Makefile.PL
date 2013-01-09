@@ -12,6 +12,7 @@ my %args = (
                            'Regexp::Grammars' => 0,
                            'Getopt::Long' => 0,
                            'Digest::SHA1' => 0,
+                           'Template' => 0,
                          },
     LIBS              => [],
     DEFINE            => '',
