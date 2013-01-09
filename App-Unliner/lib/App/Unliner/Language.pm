@@ -48,9 +48,15 @@ sub construct_pipeline {
   print $fh $self->{def_body};
   close($fh);
 
+  my $command_to_run = $self->command_to_run();
+
+  if (!ref $command_to_run) {
+    $command_to_run = [ $command_to_run ];
+  }
+
   return [{
            shell_arg => [
-             $self->command_to_run,
+             @{ $command_to_run },
              $filename,
              @{ $self->{argv} },
            ],

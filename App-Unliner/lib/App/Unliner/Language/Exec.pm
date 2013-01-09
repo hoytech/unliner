@@ -8,7 +8,7 @@ use base qw(App::Unliner::Language);
 sub command_to_run {
   my ($self) = @_;
 
-  return $self->{def_modifiers}->{args}->{exec}->[0];
+  return $self->{def_modifiers}->{args}->{exec};
 }
 
 
