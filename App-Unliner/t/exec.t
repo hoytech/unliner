@@ -2,6 +2,10 @@ use strict;
 
 use Test::More;
 
+use Config;
+my $perlpath = $Config{perlpath};
+
+
 if (-x '/bin/sh') {
   plan tests => 1;
 } else {
@@ -9,5 +13,5 @@ if (-x '/bin/sh') {
   exit;
 }
 
-ok(`$^X -I lib bin/unliner t/programs/exec.unliner "some arg"`
+ok(`$perlpath -I lib bin/unliner t/programs/exec.unliner "some arg"`
    =~ m{^Hello from /\S+ some arg \d+$});

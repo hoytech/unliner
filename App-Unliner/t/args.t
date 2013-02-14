@@ -2,15 +2,18 @@ use strict;
 
 use Test::More tests => 4;
 
+use Config;
+my $perlpath = $Config{perlpath};
 
-is(`printf "aa\nbb\ncc\n" | $^X -I lib bin/unliner t/programs/args.unliner -n 2`,
+
+is(`printf "aa\nbb\ncc\n" | $perlpath -I lib bin/unliner t/programs/args.unliner -n 2`,
    "aa\nbb\n");
 
-is(`printf "aa\nbb\ncc\n" | $^X -I lib bin/unliner t/programs/args.unliner --lines 2 -u`,
+is(`printf "aa\nbb\ncc\n" | $perlpath -I lib bin/unliner t/programs/args.unliner --lines 2 -u`,
    "AA\nBB\n");
 
-is(`printf "aa\nbb\ncc\n" | $^X -I lib bin/unliner t/programs/args.unliner -un 2 -p bb`,
+is(`printf "aa\nbb\ncc\n" | $perlpath -I lib bin/unliner t/programs/args.unliner -un 2 -p bb`,
    "AA\nCC\n");
 
-is(`$^X -I lib bin/unliner t/programs/args.unliner -n 2 --junk "not default"`,
+is(`$perlpath -I lib bin/unliner t/programs/args.unliner -n 2 --junk "not default"`,
    "not default\n");
