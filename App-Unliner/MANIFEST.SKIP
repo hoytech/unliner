@@ -7,3 +7,4 @@ README.pod
 blib/
 pm_to_blib
 App-Unliner.*tar[.]gz$
+MYMETA.*
