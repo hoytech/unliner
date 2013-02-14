@@ -1,3 +1,13 @@
+0.009   2013-02-13
+  * Add missing Template dependency
+  * Gather some more info in prog_on_stdin to debug windows
+    (github issue #1)
+  * Document and complete exec "language" hidden feature
+  * Use $Config{perlpath} instead of $^X as recommended on CPAN
+    testers twiki
+  * Don't include MYMETA files in CPAN distribution
+    (github issue #2)
+
 0.008   2013-01-06
   * Don't clean-up temp directory when UNLINER_DEBUG is specified.
     This is so you can go inspect any generated scripts after.
