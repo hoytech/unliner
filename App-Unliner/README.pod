@@ -195,6 +195,18 @@ Another supported language is python:
 
 Note that python is very noisy when it receives a SIGPIPE so polite pipeline components should manually catch it and then exit silently.
 
+A general-purpose "language" is exec. It is useful for pipeline components using programs that there are no custom languages for. For instance, the following defs are equivalent:
+
+    def second-column {
+      awk -F '{ print $2 }'
+    }
+
+    def second-column : exec awk -F, -f {
+      { print $2 }
+    }
+
+Note that the C<-f> is required because awk doesn't follow the common scripting language convention where a program path is the first argument.
+
 Github pull requests for new languages appreciated.
 
 
