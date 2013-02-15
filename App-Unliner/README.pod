@@ -198,7 +198,7 @@ Note that python is very noisy when it receives a SIGPIPE so polite pipeline com
 A general-purpose "language" is exec. It is useful for pipeline components using programs that there are no custom languages for. For instance, the following defs are equivalent:
 
     def second-column {
-      awk -F '{ print $2 }'
+      awk -F, '{ print $2 }'
     }
 
     def second-column : exec awk -F, -f {

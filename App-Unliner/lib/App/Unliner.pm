@@ -14,7 +14,7 @@ App::Unliner - Untangle your unix pipeline one-liners
 
 =head1 SYNOPSIS
 
-B<Note>: This page is a high-level overview of unliner. For a introduction and manual, see L<App::Unliner::Intro>.
+B<Note>: This page is a high-level overview of unliner. For an introduction and manual, see L<App::Unliner::Intro>.
 
 Simplest way to install unliner is with cpanminus:
 
