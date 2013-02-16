@@ -1,3 +1,7 @@
+0.010   2013-02-15
+  * Add --help option to display basic usage
+  * Fix test to not rely on GNU head(1)
+
 0.009   2013-02-13
   * Add missing Template dependency
   * Gather some more info in prog_on_stdin to debug windows

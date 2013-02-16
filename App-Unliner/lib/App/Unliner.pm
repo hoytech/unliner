@@ -2,7 +2,7 @@ package App::Unliner;
 
 use common::sense;
 
-our $VERSION = '0.009';
+our $VERSION = '0.010';
 
 1;
 
