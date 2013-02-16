@@ -16,7 +16,7 @@ App::Unliner - Untangle your unix pipeline one-liners
 
 B<Note>: This page is a high-level overview of unliner. For an introduction and manual, see L<App::Unliner::Intro>.
 
-Simplest way to install unliner is with cpanminus:
+The simplest way to install unliner is with cpanminus:
 
     curl -sL https://raw.github.com/miyagawa/cpanminus/master/cpanm | sudo perl - App::Unliner
 

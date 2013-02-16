@@ -26,7 +26,7 @@ sub display_help {
   require Pod::Perldoc;
   @ARGV = ('-F', $0);
   Pod::Perldoc->run();
-  exit 1; # shouldn't get here
+  exit 0;
 }
 
 
@@ -43,7 +43,7 @@ This is the command line interface for running unliner scripts. To learn how to 
 
 You can run your scripts by passing them in as the first argument to C<unliner>:
 
-    unliner /path/to/myscript.unliner [args]
+    unliner /path/to/myscript.unliner [args to unliner script]
 
 Alternatively, you can put the following line at the top of your unliner script:
 
@@ -61,7 +61,14 @@ Lastly, you pipe an unliner script to C<unliner> on standard input:
 
     unliner < /path/to/myscript.unliner
 
-although now your unliner script won't have standard input available to it.
+although now your unliner script won't have standard input available to it which your script may require.
+
+
+=head1 DEBUGGING
+
+If you set the environment variable C<UNLINER_DEBUG> then some extra information will be printed to stderr (see L<App::Unliner::Intro>):
+
+    UNLINER_DEBUG=1 /path/to/myscript.unliner
 
 
 =head1 SEE ALSO
