@@ -11,7 +11,73 @@ if (!defined $filename || $filename eq '-') {
   $filename = \*STDIN;
 }
 
+if ($filename eq '-h' || $filename eq '-?' || $filename eq '--help') {
+  display_help();
+}
+
 
 App::Unliner::Program->new
                      ->compile_file($filename)
                      ->run( def_name => 'main', argv => \@ARGV, );
+
+
+
+sub display_help {
+  require Pod::Perldoc;
+  @ARGV = ('-F', $0);
+  Pod::Perldoc->run();
+  exit 1; # shouldn't get here
+}
+
+
+
+=pod
+
+=head1 NAME
+
+unliner - Untangle your unix pipeline one-liners
+
+=head1 USAGE
+
+This is the command line interface for running unliner scripts. To learn how to create unliner scripts, see L<App::Unliner::Intro>.
+
+You can run your scripts by passing them in as the first argument to C<unliner>:
+
+    unliner /path/to/myscript.unliner [args]
+
+Alternatively, you can put the following line at the top of your unliner script:
+
+    #!/usr/bin/env unliner
+
+make your script executable:
+
+    chmod a+x /path/to/myscript.unliner
+
+and then run it directly:
+
+    /path/to/myscript.unliner [args]
+
+Lastly, you pipe an unliner script to C<unliner> on standard input:
+
+    unliner < /path/to/myscript.unliner
+
+although now your unliner script won't have standard input available to it.
+
+
+=head1 SEE ALSO
+
+L<App::Unliner::Intro>
+
+L<unliner github repo|https://github.com/hoytech/unliner>
+
+=head1 AUTHOR
+
+Doug Hoyte, C<< <doug@hcsw.org> >>
+
+=head1 COPYRIGHT & LICENSE
+
+Copyright 2012-2013 Doug Hoyte.
+
+This module is licensed under the same terms as perl itself.
+
+=cut

@@ -13,6 +13,7 @@ my %args = (
                            'Getopt::Long' => 0,
                            'Digest::SHA1' => 0,
                            'Template' => 0,
+                           'Pod::Perldoc' => 0,
                          },
     LIBS              => [],
     DEFINE            => '',
