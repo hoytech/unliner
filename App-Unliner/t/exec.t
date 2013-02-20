@@ -13,5 +13,5 @@ if (-x '/bin/sh') {
   exit;
 }
 
-ok(`$perlpath -I lib bin/unliner t/programs/exec.unliner "some arg"`
-   =~ m{^Hello from /\S+ some arg \d+$});
+like(`$perlpath -I lib bin/unliner t/programs/exec.unliner "some arg"`,
+     qr{^Hello from /\S+ some arg \d+$});
