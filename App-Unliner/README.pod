@@ -77,7 +77,7 @@ Now if you C<chmod +x log-report> you can run it directly.
 
 =head2 Defs
 
-The C<def main { }> isn't a special type of def except that it happens to be what is called when your program is invoked. You can create other defs and they can be invoked by your main def and other defs, kind of like subroutines (name precedent for def: CL, Python).
+The C<def main { }> isn't a special type of def except that it happens to be what is called when your program is invoked (precedent: C). You can create other defs and they can be invoked by your main def and other defs, kind of like subroutines (name precedent for def: lisp, Python).
 
 For example, we could move the C<awk> command into a C<ip-extractor> def, and the tallying logic into a C<tally> def:
 

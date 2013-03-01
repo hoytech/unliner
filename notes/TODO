@@ -1,3 +1,7 @@
+pass-through unrecognized options in def modifiers
+  def whatever : perl -MSession::Token -e { ... }
+
+
 expander
   automatically turn a pipeline into defs
 
