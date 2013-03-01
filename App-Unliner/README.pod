@@ -276,22 +276,28 @@ Unliner does pipeline optimisation by default. Currently only spurious cat proce
 
 =item * Leading cats
 
-If a pipeline begins with a cat of no arguments, that cat is removed and no cat process is created.
-
-If a pipeline begins with a cat of exactly one argument, then that file is opened and dup2()ed to STDIN.
+If a pipeline begins with a cat of no arguments, that cat is removed and no cat process is created. If a pipeline begins with a cat of exactly one argument, then that file is opened and dup2()ed to STDIN.
 
 =item * Trailing cats
 
-If a pipeline ends with a trailing cat, this cat is removed unless STDIN is a terminal. Trailing cats are useful to prevent a program from doing special terminal formatting things like adding ANSI colours.
+If a pipeline ends with a trailing cat, that cat is removed unless STDOUT is a terminal. Trailing cats are useful to prevent a program from doing special terminal formatting things like adding ANSI colours.
 
 =item * Internal cats
 
-All internal cats with no arguments are removed. Such cats aren't as silly as they sound. Sometimes a pipeline component will have a leading or trailing cat for some reason. This optimisation will stop any unnecessary cat processes from being created.
+All internal cats with no arguments are removed. Such cats aren't as silly as they sound. Sometimes pipeline components have leading or trailing cats for some reason. When these components are used in pipelines, internal cats result. This optimisation will stop any unnecessary cat processes from being created.
 
 =back
 
-Because of the above optimisations, the following program won't start a single cat process:
+Consider the following unliner script:
 
     def main {
-      cat file.txt | cat | cat | cat | wc -l | cat | cat
+      cat $@ | cat | cat | cat | wc -l | cat | cat
     }
+
+Because of the spurious cat optimisations, running it like so won't start a single cat process:
+
+    unliner lots-of-cats.unliner file.txt > output.txt
+
+It is optimised to the following equivalent:
+
+    wc -l < file.txt > output.txt
