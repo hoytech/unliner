@@ -4,6 +4,23 @@ use common::sense;
 
 use File::Temp;
 
+
+require Exporter;
+use base 'Exporter';
+our @EXPORT = qw(debug_log);
+
+
+
+sub debug_log {
+  my $msg = shift;
+
+  if ($ENV{UNLINER_DEBUG}) {
+    print STDERR "unliner: $msg\n";
+  }
+}
+
+
+
 my $dir;
 
 sub get_temp_dir {
