@@ -1,11 +1,5 @@
-cat optimisation:
-  at start:  cat $@ |   if it's one file, dup the file into stdin. if there's no files, don't launch the cat
-  at end:  | cat   should verify it's not a terminal and, if not, don't launch the cat
-
-
-expander!
+expander
   automatically turn a pipeline into defs
-
 
 
 args

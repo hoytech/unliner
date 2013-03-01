@@ -100,6 +100,7 @@ sub run {
                                         def_name => $args{def_name},
                                         argv => $args{argv},
                                       )
+                                 ->optimise
                                  ->execute;
 
   return $self;

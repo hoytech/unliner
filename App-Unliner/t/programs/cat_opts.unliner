@@ -1,0 +1,3 @@
+def main {
+  cat Makefile.PL | cat | cat | cat | wc -l | cat | cat
+}

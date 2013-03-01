@@ -19,6 +19,7 @@ README
 t/args.t
 t/args_rest.t
 t/basic.t
+t/cat_opts.t
 t/env.t
 t/exec.t
 t/grammar.t
@@ -26,6 +27,7 @@ t/prog_on_stdin.t
 t/programs/args.unliner
 t/programs/args_rest.unliner
 t/programs/basic.unliner
+t/programs/cat_opts.unliner
 t/programs/env.unliner
 t/programs/exec.unliner
 t/programs/grammar.unliner
