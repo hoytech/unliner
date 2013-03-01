@@ -19,7 +19,7 @@ sub new {
 
   if ($ENV{UNLINER_DEBUG}) {
     print STDERR "unliner: TMP: $self->{dir}\n";
-    print STDERR "unliner: TMP: Not cleaning up temp directory because UNLINER_DEBUG specified\n";
+    print STDERR "unliner: TMP: Not cleaning up temp directory because UNLINER_DEBUG >= 2\n" if $ENV{UNLINER_DEBUG} >= 2;
   }
 
   my $prev_sigint = $SIG{INT};
