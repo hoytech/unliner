@@ -103,9 +103,6 @@ sub run {
                                  ->execute;
 
   return $self;
-
-  #my $compiled_def = $self->_compile_def($args{def_name}, $args{argv});
-  #$self->_interpreter($compiled_def);
 }
 
 
