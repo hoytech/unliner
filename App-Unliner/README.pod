@@ -259,10 +259,39 @@ Above is OK because C<n> is guaranteed to be an integer, but when using template
 
 In order to see the actual pipeline being run, you can set the environment variable C<UNLINER_DEBUG> and it will print some information to standard error:
 
-    $ UNLINER_DEBUG=1 unliner log-report access.log --filter-localhost
+    $ UNLINER_DEBUG=2 unliner log-report access.log --filter-localhost
     unliner: TMP: /tmp/GPtXapOfib
-    unliner: TMP: Not cleaning up temp directory because UNLINER_DEBUG specified
+    unliner: TMP: Not cleaning up temp directory because UNLINER_DEBUG >= 2
     unliner: CMD: grep 'GET /report.cgi' access.log | perl /tmp/GPtXapOfib/56ba8ad7a6431cbe6b64835c97e248d27a4234a0 | sort | uniq -c | sort -rn | head -n 5
 
 Note that when you write defs in languages like perl and python, scripts will be created in a temporary directory and executed from there.
 
+
+
+=head2 Optimisation
+
+Unliner does pipeline optimisation by default. Currently only spurious cat processes are optimised away.
+
+=over
+
+=item * Leading cats
+
+If a pipeline begins with a cat of no arguments, that cat is removed and no cat process is created.
+
+If a pipeline begins with a cat of exactly one argument, then that file is opened and dup2()ed to STDIN.
+
+=item * Trailing cats
+
+If a pipeline ends with a trailing cat, this cat is removed unless STDIN is a terminal. Trailing cats are useful to prevent a program from doing special terminal formatting things like adding ANSI colours.
+
+=item * Internal cats
+
+All internal cats with no arguments are removed. Such cats aren't as silly as they sound. Sometimes a pipeline component will have a leading or trailing cat for some reason. This optimisation will stop any unnecessary cat processes from being created.
+
+=back
+
+Because of the above optimisations, the following program won't start a single cat process:
+
+    def main {
+      cat file.txt | cat | cat | cat | wc -l | cat | cat
+    }
