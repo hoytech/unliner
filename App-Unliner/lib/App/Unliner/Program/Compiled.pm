@@ -137,6 +137,8 @@ sub execute {
 
   #say STDERR 'reaped ' . 
   waitpid(-1, 0) . " ($?)" for 1..@$commands;
+
+  return $self;
 }
 
 
