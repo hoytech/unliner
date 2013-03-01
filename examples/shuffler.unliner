@@ -1,0 +1,19 @@
+## This script randomly shuffles the input lines
+## It will succeed even if the data can't all fit into memory at once
+
+def prepend : perl -ne {
+  use Session::Token;
+  use 5.10.0; # for state keyword
+  state $gen = Session::Token->new;
+  print $gen->get . ":$_";
+}
+
+def remove {
+  perl -pe 's/^\w+://'
+}
+
+def main {
+  prepend |
+  sort |
+  remove |
+}
