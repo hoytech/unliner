@@ -13,6 +13,7 @@ def remove {
 }
 
 def main {
+  cat $@ |
   prepend |
   sort |
   remove |
