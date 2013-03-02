@@ -260,8 +260,7 @@ Above is OK because C<n> is guaranteed to be an integer, but when using template
 In order to see the actual pipeline being run, you can set the environment variable C<UNLINER_DEBUG> and it will print some information to standard error:
 
     $ UNLINER_DEBUG=2 unliner log-report access.log --filter-localhost
-    unliner: TMP: /tmp/GPtXapOfib
-    unliner: TMP: Not cleaning up temp directory because UNLINER_DEBUG >= 2
+    unliner: TMP: Not cleaning up temp directory /tmp/GPtXapOfib because UNLINER_DEBUG >= 2
     unliner: CMD: grep 'GET /report.cgi' access.log | perl /tmp/GPtXapOfib/56ba8ad7a6431cbe6b64835c97e248d27a4234a0 | sort | uniq -c | sort -rn | head -n 5
 
 Note that when you write defs in languages like perl and python, scripts will be created in a temporary directory and executed from there.
