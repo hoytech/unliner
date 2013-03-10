@@ -1,3 +1,12 @@
+0.011   2013-03-09
+  * Improve output of tests when they fail
+  * In tests, support echo binaries that don't know about -n
+    (ie solaris/mac os)
+  * Only leave around temp directory if UNLINER_DEBUG >= 2
+  * Pipeline optimisation: spurious cat removals
+  * Add shuffler.unliner example to examples/ directory
+  * Docs
+
 0.010   2013-02-15
   * Add --help option to display basic usage
   * Fix test to not rely on GNU head(1)
