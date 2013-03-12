@@ -65,13 +65,15 @@ To turn your one-liner into an unliner just wrap a C<def main { }> around it lik
 
 If you save this in the file C<log-report> then your unliner program can be invoked with this command:
 
-    $ unliner log-report
+    $ unliner log-report < input.txt
 
 You could also put a L<shebang line|https://en.wikipedia.org/wiki/Shebang_(Unix)> at the top of your script:
 
     #!/usr/bin/env unliner
 
-Now if you C<chmod +x log-report> you can run it directly.
+Now if you C<chmod +x log-report> you can run it directly:
+
+    $ ./log-report < input.txt
 
 
 
@@ -113,9 +115,9 @@ Now we can pass in a log file argument to our program (otherwise it will read in
 
     $ unliner log-report access.log
 
-Note that $@ escapes whitespace like bourne shell's C<"$@">. Actually it just passes the argument array untouched through to the process (grep in this case) so the arguments can contain any characters. The bourne equivalent of unquoted C<$@> and C<$*> are not supported because they cause way too many bugs (use templates below if you need to do this).
+Note that $@ escapes whitespace like bourne shell's C<"$@">. Actually it just passes the argument array untouched through to the process (grep in this case) so the arguments can contain any characters. The bourne equivalent of unquoted C<$@> and C<$*> are not supported because they cause way too many bugs (use templates if you need to do this).
 
-We can parameterise other aspects of the unliner program too. For example, let's suppose we wanted to control the number of lines that are included in the report. To do this we add a "prototype":
+We can parameterise other aspects of the unliner program too. For example, suppose you wanted to control the number of lines that are included in the report. To do this add a "prototype":
 
     def main(head|h=i) {
       grep "GET /report.cgi" $@ | ip-extractor | tally | head -n $head
@@ -160,7 +162,7 @@ Defs internal to your program accept arguments in exactly the same way:
 
 The contents of all the defs we've seen so far are in a custom unliner language called B<Shell>. C<: sh> is redundant because Shell is the default language.
 
-Shell is mostly like bourne shell/bash but a little bit different. The differences are described in the distribution's TODO file. Some differences are deliberate and some are just features that haven't been implemented yet. One difference is that unliner uses perl-style backslashed single quotes in single quoted string literals, not bourne shell-style (if you don't know what the bourne shell-style is, consider yourself lucky).
+Shell is mostly like bourne shell/bash but a little bit different. The differences are described in the distribution's TODO file. Some differences are deliberate and some are just features that haven't been implemented yet. One difference is that unliner uses perl-style backslashed single quotes in single quoted string literals, not bourne shell-style. If you don't know what the bourne shell-style is, consider yourself lucky.
 
 Def modifiers can be used to change how the def body is interpreted by changing the language to something other than Shell. Modifiers go in between the def name/prototype and the body. One language modifier that can be used is C<perl>. It causes the def body to be interpreted as perl code. For example:
 
@@ -195,7 +197,7 @@ Another supported language is python:
 
 Note that python is very noisy when it receives a SIGPIPE so polite pipeline components should manually catch it and then exit silently.
 
-A general-purpose "language" is exec. It is useful for pipeline components using programs that there are no custom languages for. For instance, the following defs are equivalent:
+A general-purpose "language" is exec. It is useful for running any command on your system, even when there are no such custom languages. As an example of exec usage, the following defs are equivalent:
 
     def second-column {
       awk -F, '{ print $2 }'
@@ -242,7 +244,7 @@ We can now enable this option from the command line:
 
     $ unliner log-report access.log --filter-localhost
 
-A grep process wil only be created if the C<--filter-localhost> option is passed in.
+A grep process will only be created if the C<--filter-localhost> option is passed in.
 
 Remember that templates are processed as strings before the language even sees them. For example, here is how you could take advantage of the head "negative number" trick:
 
@@ -250,7 +252,10 @@ Remember that templates are processed as strings before the language even sees t
       head -[% n %]
     }
 
-Above is OK because C<n> is guaranteed to be an integer, but when using templates always be careful about escaping or sanitising values.
+B<When using templates always be careful about escaping or sanitising values.>
+
+The above example is OK because C<n> is guaranteed to be an integer. 
+
 
 
 
@@ -297,6 +302,6 @@ Because of the spurious cat optimisations, running it like so won't start a sing
 
     unliner lots-of-cats.unliner file.txt > output.txt
 
-It is optimised to the following equivalent:
+It will be optimised to this equivalent command:
 
     wc -l < file.txt > output.txt
