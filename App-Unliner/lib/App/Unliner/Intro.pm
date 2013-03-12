@@ -141,15 +141,17 @@ C<head|h=i> is a L<Getopt::Long> argument definition. It means that the official
 
 However, if you forget to add one of these arguments, the head process will die with an error like C<head: : invalid number of lines>.
 
-In order to have a default value for a paramater, you put parentheses around the argument definition followed by the default value (precedent: lisp):
+Other common L<GetOpt::Long> argument definitions are string (ie C<hostname|h=s>) and boolean on/off switches that require no argument (ie C<flag|f>). 
+
+In order to have a default value for a parameter, you put parentheses around the argument definition followed by the default value (precedent: lisp):
 
     def main((head|h=i 5)) {
       grep "GET /report.cgi" $@ | ip-extractor | tally | head -n $head
     }
 
-Environment variables are also available so C<$HOME> and such will work.
+Environment variables are also available so C<$HOME> and such will work too.
 
-None of these variables need to be quoted. They are always passed verbatim to the underlying command.
+None of these variables need to be quoted. They are always passed verbatim to the underlying command. If you do quote them, be aware that string interpolation doesn't occur (use templates for that).
 
 Defs internal to your program accept arguments in exactly the same way:
 
