@@ -1,0 +1,17 @@
+Bug in libpthread ???
+
+==8474== Thread #1 is the program's root thread
+==8474== 
+==8474== Thread #1: Bug in libpthread: pthread_cond_wait succeeded on without prior pthread_cond_post
+==8474==    at 0x4C2B9EE: pthread_cond_wait_WRK (hg_intercepts.c:659)
+==8474==    by 0x4C2BA6B: pthread_cond_wait@* (hg_intercepts.c:676)
+==8474==    by 0x4E32749: unpipe_readv (unpipe.c:184)
+==8474==    by 0x4E32EA1: read (unpipe.c:469)
+==8474==    by 0x5152BAD: PerlIOUnix_read (in /usr/lib/libperl.so.5.10.1)
+==8474==    by 0x5154128: PerlIOBuf_fill (in /usr/lib/libperl.so.5.10.1)
+==8474==    by 0x51516D7: Perl_PerlIO_fill (in /usr/lib/libperl.so.5.10.1)
+==8474==    by 0x515251A: PerlIOBase_read (in /usr/lib/libperl.so.5.10.1)
+==8474==    by 0x515265A: PerlIO_getc (in /usr/lib/libperl.so.5.10.1)
+==8474==    by 0x50FDB7F: Perl_sv_gets (in /usr/lib/libperl.so.5.10.1)
+==8474==    by 0x50E3B27: Perl_do_readline (in /usr/lib/libperl.so.5.10.1)
+==8474==    by 0x50DE335: Perl_runops_standard (in /usr/lib/libperl.so.5.10.1)
