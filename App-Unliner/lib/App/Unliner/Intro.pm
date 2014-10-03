@@ -149,8 +149,6 @@ In order to have a default value for a parameter, you put parentheses around the
       grep "GET /report.cgi" $@ | ip-extractor | tally | head -n $head
     }
 
-Environment variables are also available so C<$HOME> and such will work too.
-
 None of these variables need to be quoted. They are always passed verbatim to the underlying command. If you do quote them, be aware that string interpolation doesn't occur (use templates for that).
 
 Defs internal to your program accept arguments in exactly the same way:
@@ -163,6 +161,34 @@ Defs internal to your program accept arguments in exactly the same way:
       head -n $n
     }
 
+
+=head2 Argument pass-through and environment variables
+
+Normally if you pass an argument into a def (from the command line or from another def) that isn't listed in the prototype, an "Unknown option" error will be thrown. This is the default L<Getopt::Long> behaviour. If you wish to suppress this error and leave unknown options in the argument list, you can use the C<pass-through> def modifier like so:
+
+    def main : pass-through {
+      my-head $@
+    }
+
+    def my-head(count=i) {
+      head -n $count
+    }
+
+C<pass-through> simply sets the C<pass_through> option of L<Getopt::Long>.
+
+Environment variables that were given to the unliner process are present in your scripts as variables too. For example, this does what you'd expect:
+
+    def main {
+      echo $PATH
+    }
+
+But note that interpolating variables isn't (yet?) supported so C<echo "$PATH:/opt/bin"> won't work (use templates for that -- see below).
+
+There is a def modifier called C<env> that allows you to install arguments into environment variables while invoking the def. This is useful for languages like C<perl> where access to environment variables is easier than parsing an argument list:
+
+    def main((name=s 'Anonymous')) : perl : env {
+      print "Hello, $ENV{name}\n";
+    }
 
 
 
@@ -315,3 +341,24 @@ Because of the spurious cat optimisations, running it like so won't start a sing
 It will be optimised to this equivalent command:
 
     wc -l < file.txt > output.txt
+
+
+
+=head1 SEE ALSO
+
+L<App::Unliner>
+
+L<unliner>
+
+L<Unliner github repo|https://github.com/hoytech/unliner>
+
+
+=head1 AUTHOR
+
+Doug Hoyte, C<< <doug@hcsw.org> >>
+
+=head1 COPYRIGHT & LICENSE
+
+Copyright 2012-2014 Doug Hoyte.
+
+This module is licensed under the same terms as perl itself.
