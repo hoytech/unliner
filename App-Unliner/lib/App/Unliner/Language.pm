@@ -60,6 +60,7 @@ sub construct_pipeline {
              $filename,
              @{ $self->{argv} },
            ],
+           env => $self->{def_modifiers}->{args}->{env} ? $self->{context} : {},
          }];
 }
 

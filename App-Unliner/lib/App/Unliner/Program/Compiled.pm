@@ -208,6 +208,8 @@ sub execute {
 
       my @exec_args = @{$command->{shell_arg}};
 
+      $ENV{$_} = $command->{env}->{$_} foreach (keys %{$command->{env}});
+
       exec(@exec_args);
       die "couldn't exec $exec_args[0]: $!";
     }
