@@ -151,7 +151,7 @@ sub getopt_from_array {
   my ($self, $argv, $context, @get_opt_args) = @_;
 
   Getopt::Long::GetOptionsFromArray($argv, $context, @get_opt_args)
-    || croak "arg parsing failed";
+    || croak "arg parsing failed for def " . $self->{def_name};
 }
 
 
