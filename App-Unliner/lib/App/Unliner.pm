@@ -7,12 +7,17 @@ our $VERSION = '0.011';
 1;
 
 
+__END__
+
+=encoding utf-8
 
 =head1 NAME
 
 App::Unliner - Untangle your unix pipeline one-liners
 
 =head1 SYNOPSIS
+
+Unliner is a scripting language and toolset for refactoring and developing unix one-liners.
 
 B<Note>: This page is a high-level overview of unliner. For an introduction and manual, see L<App::Unliner::Intro>.
 

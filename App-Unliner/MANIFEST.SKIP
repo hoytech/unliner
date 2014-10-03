@@ -1,7 +1,6 @@
 MANIFEST.bak
 Makefile.old
 Makefile$
-README.pod
 .gitignore
 .git/
 blib/

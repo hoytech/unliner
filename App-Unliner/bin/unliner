@@ -30,14 +30,20 @@ sub display_help {
 }
 
 
+__END__
+
 
 =pod
+
+=encoding utf-8
 
 =head1 NAME
 
 unliner - Untangle your unix pipeline one-liners
 
 =head1 USAGE
+
+Unliner is a scripting language and toolset for refactoring and developing unix one-liners.
 
 This is the command line interface for running unliner scripts. To learn how to create unliner scripts, see L<App::Unliner::Intro>.
 
