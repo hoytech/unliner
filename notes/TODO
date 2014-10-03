@@ -8,6 +8,7 @@ expander
 
 args
   shell_escape TT filter
+  handle - vs _ in argument names better
 
 
 def modifiers
@@ -27,6 +28,7 @@ incompatibilities in :sh
   $$ and such: http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html
   "hello"world quoting
   ?? shell style single quotes (should leave it as is? -- perl style is nicer)
+  ?? string interpolation
 
 
 
@@ -45,6 +47,3 @@ design
 bugs
   printf "aa\nbb\ncc\n" | perl -I lib bin/unliner t/programs/args.unliner -n 2 --junk "what's up"
     -- parse error embedded '
-
-  in debug output, last arg needs to be quoted because of \ and ;
-    unliner: CMD: perl /tmp/8mUV6yHqJN/adcc1c9f9e77e50b9bac288281c32982012d681b | sort | perl -ne s/^\w+://;print
