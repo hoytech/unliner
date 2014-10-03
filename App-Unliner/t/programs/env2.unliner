@@ -1,5 +1,5 @@
-def main(blah=s) {
-  prepend_rofl_arg --rofl $blah | dont_prepend_lol_arg --lol BREAKAGE
+def main((blah=s 'default_prefix')) : template {
+  prepend_rofl_arg [% IF blah %] --rofl $blah [% END %] | dont_prepend_lol_arg --lol BREAKAGE
 }
 
 def prepend_rofl_arg(rofl=s) : perl -n : env {

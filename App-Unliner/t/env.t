@@ -1,6 +1,6 @@
 use strict;
 
-use Test::More tests => 3;
+use Test::More tests => 4;
 
 use Config;
 my $perlpath = $Config{perlpath};
@@ -14,3 +14,6 @@ is(`cmdvar=outer ENVVAR="rofl copter" $perlpath -I lib bin/unliner t/programs/en
 
 is(`printf "line\n" | $perlpath -I lib bin/unliner t/programs/env2.unliner --blah PREFIX`,
   "PREFIXline\n");
+
+is(`printf "line\n" | $perlpath -I lib bin/unliner t/programs/env2.unliner`,
+  "default_prefixline\n");
