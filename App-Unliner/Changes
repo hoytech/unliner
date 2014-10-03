@@ -1,3 +1,12 @@
+0.020   2014-10-03
+  * Bugfix: a program that expanded into a single cat was broken by
+    cat optimisation
+  * Improve error message: indicate which def failed arg parsing
+  * add "env" def modifier that installs arguments into environment
+  * make shell requoting come in effect on more than just whitespace
+   (in case you have shell metacharacters in your args)
+  * Docs
+
 0.011   2013-03-09
   * Improve output of tests when they fail
   * In tests, support echo binaries that don't know about -n
