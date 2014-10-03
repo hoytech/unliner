@@ -29,6 +29,7 @@ t/programs/args_rest.unliner
 t/programs/basic.unliner
 t/programs/cat_opts.unliner
 t/programs/env.unliner
+t/programs/env2.unliner
 t/programs/exec.unliner
 t/programs/grammar.unliner
 t/programs/prog_on_stdin.unliner
