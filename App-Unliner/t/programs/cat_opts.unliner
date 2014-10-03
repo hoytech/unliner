@@ -1,3 +1,7 @@
 def main {
-  cat Makefile.PL | cat | cat | cat | wc -l | cat | cat
+  cat Makefile.PL | cat | cat | interior_cats | cat | wc -l | cat | cat
+}
+
+def interior_cats {
+  cat | cat
 }
