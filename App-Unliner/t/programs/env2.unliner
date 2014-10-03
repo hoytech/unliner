@@ -1,0 +1,12 @@
+def main(blah=s) {
+  prepend_rofl_arg --rofl $blah | dont_prepend_lol_arg --lol BREAKAGE
+}
+
+def prepend_rofl_arg(rofl=s) : perl -n : env {
+  print "$ENV{rofl}$_";
+}
+
+# verifies env var doesn't get installed unless you set :env
+def dont_prepend_lol_arg(lol=s) : perl -n {
+  print "$ENV{rofl}$_";
+}
