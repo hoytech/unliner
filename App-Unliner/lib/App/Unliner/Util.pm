@@ -43,7 +43,7 @@ sub get_temp_dir {
 sub re_shell_quote {
   my $arg = shift;
 
-  if ($arg =~ /['"\s]/) {
+  if ($arg !~ m{^[\w/+-.]+$}) {
     $arg =~ s/'/\\'/g;
     $arg = "'$arg'";
   }
