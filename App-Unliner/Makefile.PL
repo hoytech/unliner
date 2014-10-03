@@ -19,7 +19,7 @@ my %args = (
     DEFINE            => '',
     LICENSE => 'perl',
     dist => {
-      PREOP => 'perldoc -uT lib/App/Unliner/Intro.pm > README.pod; pod2text README.pod > $(DISTVNAME)/README',
+      PREOP => 'pod2text lib/App/Unliner/Intro.pm > $(DISTVNAME)/README',
     },
 );
 
