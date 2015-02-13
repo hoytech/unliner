@@ -2,6 +2,9 @@ use strict;
 
 use ExtUtils::MakeMaker;
 
+if ($^O eq "MSWin32") {
+    die "test hang on Windows\nOS unsupported\n";
+}
 
 my %args = (
     NAME              => 'App::Unliner',
