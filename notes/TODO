@@ -21,6 +21,10 @@ def modifiers
   : unpipe
 
 
+optimisations
+  optimise "sort|uniq|sort -rn" into a hashmap counter (idea from http://www.pipecut.org/)
+
+
 
 incompatibilities in :sh
   BLAH=1 prefix env variables
