@@ -23,6 +23,7 @@ def modifiers
 
 optimisations
   optimise "sort|uniq|sort -rn" into a hashmap counter (idea from http://www.pipecut.org/)
+  combine "grep blah|grep lol" to "egrep 'blah|lol'" (also mentioned in pipecut video)
 
 
 
